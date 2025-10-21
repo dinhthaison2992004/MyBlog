@@ -1,7 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 export default function SpringBootPaymentIntegrationBlog() {
+  const [showButtons, setShowButtons] = useState(false);
+  const navigate = useNavigate();
+
+  // Handle scroll to show/hide buttons
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowButtons(true);
+      } else {
+        setShowButtons(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  // Navigate back
+  const goBack = () => {
+    navigate(-1);
+  };
+
   return (
     <div className="container">
       <style>
@@ -289,6 +320,46 @@ export default function SpringBootPaymentIntegrationBlog() {
             box-shadow: 0 12px 30px rgba(255, 255, 255, 0.3);
           }
 
+          .nav-buttons {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column-reverse; /* Back button below Back to Top */
+            gap: 0.75rem; /* Reduced gap for vertical layout */
+            z-index: 1000;
+          }
+
+          .nav-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .nav-button:hover {
+            background: linear-gradient(90deg, #4f46e5, #7c3aed);
+            transform: translateY(-2px);
+          }
+
+          .nav-button svg {
+            width: 20px;
+            height: 20px;
+            fill: #ffffff;
+            margin-right: 0.5rem;
+          }
+
           @media (max-width: 768px) {
             .container { padding: 2rem 1rem; }
             .header h1 { font-size: 2.2rem; }
@@ -299,6 +370,15 @@ export default function SpringBootPaymentIntegrationBlog() {
             .code-card { font-size: 0.85rem; padding: 1.5rem; }
             .cta-section { padding: 3rem 1.5rem; }
             .cta-section h2 { font-size: 1.8rem; }
+            .nav-buttons {
+              bottom: 1rem;
+              right: 1rem;
+              gap: 0.5rem; /* Smaller gap for mobile */
+            }
+            .nav-button {
+              padding: 0.5rem 1rem;
+              font-size: 0.8rem;
+            }
           }
         `}
       </style>
@@ -639,13 +719,13 @@ public class VNPayService {
     @Value("\${vnpay.vnp_pay_url}")
     private String vnp_PayUrl;
 
-  @Value("\${vnpay.vnp_tmn_code}")
+    @Value("\${vnpay.vnp_tmn_code}")
     private String vnp_TmnCode;
 
-@Value("\${vnpay.vnp_hash_secret}")
+    @Value("\${vnpay.vnp_hash_secret}")
     private String vnp_HashSecret;
 
-@Value("\${vnpay.vnp_return_url}")
+    @Value("\${vnpay.vnp_return_url}")
     private String vnp_ReturnUrl;
 
     @Transactional
@@ -909,7 +989,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class StripeService {
 
-@Value("\${stripe.api.key}")
+    @Value("\${stripe.api.key}")
     private String stripeApiKey;
 
     public StripeService() {
@@ -956,34 +1036,6 @@ public class StripeService {
             return session.getUrl();
         } catch (Exception e) {
             throw new RuntimeException("Lỗi tạo thanh toán Stripe: " + e.getMessage(), e);
-        }
-    }
-
-    @PostMapping("/webhook")
-    public ResponseEntity<String> handleStripeWebhook(@RequestBody String payload, 
-                                                      @RequestHeader("Stripe-Signature") String signature) {
-        try {
-            Event event = Webhook.constructEvent(
-                payload, signature, webhookSecret
-            );
-
-            if ("checkout.session.completed".equals(event.getType())) {
-                CheckoutSession session = (CheckoutSession) event.getDataObjectDeserializer()
-                    .getObject().get();
-
-                String sessionId = session.getId();
-                Order order = orderService.findByTransactionId(sessionId).orElseThrow();
-                order.setStatus("PAID");
-                orderService.save(order);
-
-                // Gửi email xác nhận, cập nhật inventory, etc.
-            }
-
-            return ResponseEntity.ok().build();
-        } catch (SignatureVerificationException e) {
-            return ResponseEntity.badRequest().body("Invalid signature");
-        } catch (Exception e) {
-            return ResponseEntity.status(400).body("Webhook error: " + e.getMessage());
         }
     }
 }
@@ -1139,10 +1191,10 @@ import java.util.List;
 @Service
 public class PayPalService {
 
-@Value("\${paypal.client.id}")
+    @Value("\${paypal.client.id}")
     private String clientId;
 
-@Value("\${paypal.client.secret}")
+    @Value("\${paypal.client.secret}")
     private String clientSecret;
 
     @Value("\${paypal.mode}")
@@ -1302,8 +1354,8 @@ if (urlParams.has('paymentId') && urlParams.has('PayerID')) {
     const paymentId = urlParams.get('paymentId');
     const payerId = urlParams.get('PayerID');
     
-window.location.href = '/api/payment/paypal/success?paymentId=' + paymentId + '&PayerID=' + payerId;
-
+    window.location.href = '/api/payment/paypal/success?paymentId=' + paymentId + '&PayerID=' + payerId;
+}
 `}
             </code>
           </pre>
@@ -1565,6 +1617,32 @@ public class PaymentIntegrationTest {
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 1 }}
       />
+
+      {/* Navigation Buttons */}
+      {showButtons && (
+        <div className="nav-buttons">
+          <button
+            onClick={scrollToTop}
+            className="nav-button"
+            aria-label="Lên đầu trang"
+          >
+            <svg viewBox="0 0 24 24">
+              <path d="M12 5.41L17.59 11c.39.39.39 1.02 0 1.41-.39.39-1.02.39-1.41 0L13 9.22V21c0 .55-.45 1-1 1s-1-.45-1-1V9.22l-3.19 3.19c-.39.39-1.02.39-1.41 0-.39-.39-.39-1.02 0-1.41L11.59 5c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41z"/>
+            </svg>
+            Lên đầu
+          </button>
+          <button
+            onClick={goBack}
+            className="nav-button"
+            aria-label="Quay lại trang trước"
+          >
+            <svg viewBox="0 0 24 24">
+              <path d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.03 0-1.42L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/>
+            </svg>
+            Quay lại
+          </button>
+        </div>
+      )}
     </div>
   );
 }

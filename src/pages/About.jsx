@@ -691,26 +691,15 @@ export default function About() {
   </div>
 </motion.section>
 
-          {/* CTA Section */}
-          <motion.section
-            className="cta"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="subtitle">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="#a78bfa">
-                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-1 14H5c-.55 0-1-.45-1-1v-5h16v5c0 .55-.45 1-1 1zm0-10H5c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v1c0 .55-.45 1-1 1z"/>
-              </svg>
-              Cùng tạo nên điều tuyệt vời 🚀
-            </h2>
-            <p>
-              Nếu bạn có ý tưởng, dự án hoặc chỉ muốn trò chuyện về công nghệ —
-              đừng ngần ngại liên hệ với tôi.
-            </p>
-            <Link to="/contact" className="btn">💬 Liên hệ ngay</Link>
-          </motion.section>
+          {/* CTA SECTION */}
+                 <section className="cta">
+                   <h2>Cùng tạo nên điều tuyệt vời 🚀</h2>
+                   <p>
+                     Nếu bạn có ý tưởng, dự án hoặc chỉ muốn trò chuyện về công nghệ —
+                     đừng ngần ngại liên hệ với tôi.
+                   </p>
+                   <Link to="/About">💬 Liên hệ ngay</Link>
+                 </section>
         </div>
       </div>
     </>

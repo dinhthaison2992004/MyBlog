@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function Blog() {
   return (
@@ -42,6 +43,9 @@ export default function Blog() {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            min-height: 400px; /* Ensure consistent card height */
           }
 
           .card:hover {
@@ -69,6 +73,7 @@ export default function Blog() {
             color: rgba(255, 255, 255, 0.8);
             margin-bottom: 1rem;
             line-height: 1.5;
+            flex-grow: 1; /* Allow description to take available space */
           }
 
           .card a {
@@ -80,11 +85,68 @@ export default function Blog() {
             border-radius: 0.5rem;
             text-decoration: none;
             transition: background 0.3s ease, transform 0.2s ease;
+            margin-top: auto; /* Push button to the bottom */
+            align-self: flex-start; /* Align button to start for consistency */
           }
 
           .card a:hover {
             background: linear-gradient(90deg, #6366f1, #a855f7);
             transform: scale(1.05);
+          }
+
+          /* CTA SECTION */
+          .cta {
+            background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Visible border for frame */
+            border-radius: 12px; /* Rounded corners */
+            color: white;
+            text-align: center;
+            padding: 50px 20px; /* Reduced padding for smaller size */
+            width: 100%;
+            max-width: 1000px; /* Reduced max-width for smaller size */
+            margin: 3rem auto; /* Consistent margin with blog layout */
+            backdrop-filter: blur(10px); /* Match blog card blur effect */
+            -webkit-backdrop-filter: blur(10px);
+          }
+
+          .cta h2 {
+            font-family: 'Inter', sans-serif; /* Clean, consistent font */
+            font-size: 2rem; /* Smaller font size */
+            font-weight: 700; /* Slightly lighter weight for clarity */
+            margin-bottom: 20px; /* Reduced margin */
+            color: #ffffff; /* Bright white for contrast */
+            line-height: 1.4; /* Adjusted for readability */
+            letter-spacing: 0.02em; /* Subtle letter spacing */
+          }
+
+          .cta p {
+            font-family: 'Inter', sans-serif; /* Consistent font */
+            font-size: 1rem; /* Smaller font size */
+            color: #ffffff; /* Bright white for contrast */
+            margin-bottom: 24px; /* Reduced margin */
+            max-width: 700px; /* Reduced max-width */
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6; /* Adjusted for readability */
+            letter-spacing: 0.01em; /* Subtle letter spacing */
+          }
+
+          .cta a {
+            background: linear-gradient(90deg, #4f46e5, #7c3aed); /* Match blog button style */
+            color: white;
+            padding: 12px 32px; /* Slightly reduced padding */
+            border-radius: 8px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif; /* Consistent font */
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+          }
+
+          .cta a:hover {
+            background: linear-gradient(90deg, #6366f1, #a855f7); /* Match blog button hover style */
+            transform: translateY(-2px);
           }
 
           @media (max-width: 768px) {
@@ -94,6 +156,15 @@ export default function Blog() {
 
             .grid {
               grid-template-columns: 1fr;
+            }
+
+            .card {
+              min-height: 350px; /* Adjust for smaller screens */
+            }
+
+            .cta {
+              padding: 40px 15px; /* Further reduced padding for mobile */
+              max-width: 90%; /* Adjust for smaller screens */
             }
           }
         `}
@@ -254,7 +325,33 @@ export default function Blog() {
           </p>
           <a href="/spring-boot-testing">Xem thêm →</a>
         </motion.div>
+        <motion.div
+          className="card"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.0 }}
+          viewport={{ once: true }}
+        >
+          <img
+            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
+            alt="Spring Boot với OAuth2"
+          />
+          <h2>Spring Boot với OAuth2 & Social Login</h2>
+          <p>
+            Hướng dẫn tích hợp OAuth2 và social login (Google, GitHub) vào ứng dụng Spring Boot với Spring Security, đảm bảo xác thực an toàn.
+          </p>
+          <a href="/spring-boot-oauth2">Xem thêm →</a>
+        </motion.div>
       </div>
+      {/* CTA SECTION */}
+      <section className="cta">
+        <h2>Cùng tạo nên điều tuyệt vời 🚀</h2>
+        <p>
+          Nếu bạn có ý tưởng, dự án hoặc chỉ muốn trò chuyện về công nghệ —
+          đừng ngần ngại liên hệ với tôi.
+        </p>
+        <Link to="/contact">💬 Liên hệ ngay</Link>
+      </section>
     </div>
   );
 }

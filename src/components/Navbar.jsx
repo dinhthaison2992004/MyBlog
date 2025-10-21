@@ -7,10 +7,9 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Trang chủ", path: "/" },
-    { name: "Giới thiệu", path: "/about" },
     { name: "Bài viết", path: "/blog" },
     { name: "Dự án", path: "/project" },
-    { name: "Liên hệ", path: "/contact" },
+    { name: "Giới thiệu", path: "/about" },
   ];
 
   const toggleMenu = () => {

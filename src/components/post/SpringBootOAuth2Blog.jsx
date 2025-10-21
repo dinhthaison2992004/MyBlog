@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-export default function SpringBootTestingBlog() {
+export default function SpringBootOAuth2Blog() {
   const [showButtons, setShowButtons] = useState(false);
   const navigate = useNavigate();
 
@@ -390,9 +390,9 @@ export default function SpringBootTestingBlog() {
         transition={{ duration: 0.8 }}
         className="header"
       >
-        <h1>Testing trong Spring Boot</h1>
+        <h1>Spring Boot với OAuth2 & Social Login</h1>
         <p>
-          Bởi <span>Đinh Sơn</span> | 21/10/2025 | 12 phút đọc
+          Bởi <span>Đinh Sơn</span> | 21/10/2025 | 15 phút đọc
         </p>
       </motion.header>
 
@@ -404,8 +404,8 @@ export default function SpringBootTestingBlog() {
         className="main-image"
       >
         <img
-          src="https://images.unsplash.com/photo-1618401471353-7f7b268e6d3e?auto=format&fit=crop&w=1200&q=80"
-          alt="Spring Boot Testing"
+          src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
+          alt="Spring Boot OAuth2"
         />
       </motion.div>
 
@@ -417,26 +417,26 @@ export default function SpringBootTestingBlog() {
         viewport={{ once: true }}
         className="section"
       >
-        <h2>Giới thiệu về Testing trong Spring Boot</h2>
+        <h2>Giới thiệu về OAuth2 và Social Login trong Spring Boot</h2>
         <p>
-          Testing là một phần quan trọng trong phát triển ứng dụng Spring Boot để đảm bảo chất lượng mã nguồn, giảm lỗi, và tăng độ tin cậy. Spring Boot cung cấp các công cụ mạnh mẽ như <strong>Spring Boot Test</strong>, <strong>JUnit</strong>, và <strong>Mockito</strong> để hỗ trợ viết unit test, integration test, và end-to-end test.
+          OAuth2 là một giao thức xác thực và phân quyền phổ biến, cho phép người dùng đăng nhập vào ứng dụng bằng tài khoản từ các nhà cung cấp bên thứ ba như Google, GitHub, hoặc Facebook. Trong Spring Boot, việc tích hợp OAuth2 và social login được hỗ trợ mạnh mẽ qua <strong>Spring Security OAuth2</strong>.
         </p>
         <p>
           Trong bài viết này, chúng ta sẽ tìm hiểu:
         </p>
         <ul>
-          <li>Các loại testing: Unit test, integration test, và end-to-end test.</li>
-          <li>Cách sử dụng JUnit và Mockito trong Spring Boot.</li>
-          <li>Cách viết integration test với <code>@SpringBootTest</code> và <code>TestRestTemplate</code>.</li>
-          <li>Best practices để viết test hiệu quả và dễ bảo trì.</li>
-          <li>Ví dụ thực tế về testing REST API trong Spring Boot.</li>
+          <li>OAuth2 là gì và cách hoạt động của nó.</li>
+          <li>Cách cấu hình Spring Boot để sử dụng OAuth2.</li>
+          <li>Tích hợp social login với Google và GitHub.</li>
+          <li>Best practices để bảo mật và quản lý token.</li>
+          <li>Ví dụ thực tế về ứng dụng Spring Boot với social login.</li>
         </ul>
         <p>
-          Bài viết này dành cho cả người mới bắt đầu và các lập trình viên muốn nâng cao kỹ năng testing trong Spring Boot.
+          Bài viết này phù hợp cho cả người mới bắt đầu và các lập trình viên muốn triển khai xác thực an toàn trong ứng dụng Spring Boot.
         </p>
       </motion.section>
 
-      {/* Types of Testing */}
+      {/* Understanding OAuth2 */}
       <motion.section
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -444,45 +444,47 @@ export default function SpringBootTestingBlog() {
         viewport={{ once: true }}
         className="section"
       >
-        <h2>Các loại Testing trong Spring Boot</h2>
+        <h2>Hiểu về OAuth2</h2>
         <p>
-          Có ba loại testing chính trong Spring Boot:
+          OAuth2 là một giao thức cho phép ứng dụng truy cập tài nguyên của người dùng từ một nhà cung cấp dịch vụ (như Google) mà không cần chia sẻ mật khẩu. Nó hoạt động dựa trên các vai trò:
+        </p>
+        <ul>
+          <li><strong>Resource Owner:</strong> Người dùng sở hữu dữ liệu (ví dụ: bạn).</li>
+          <li><strong>Client:</strong> Ứng dụng Spring Boot của bạn.</li>
+          <li><strong>Authorization Server:</strong> Nhà cung cấp như Google, GitHub.</li>
+          <li><strong>Resource Server:</strong> Nơi lưu trữ dữ liệu của người dùng.</li>
+        </ul>
+        <p>
+          OAuth2 sử dụng các luồng (flow) như Authorization Code Grant để cấp access token và refresh token.
         </p>
         <div className="table-container">
           <table className="comparison-table">
             <thead>
               <tr>
-                <th>Loại Test</th>
+                <th>Luồng OAuth2</th>
                 <th>Mục đích</th>
-                <th>Công cụ</th>
-                <th>Phạm vi</th>
+                <th>Ứng dụng</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>Unit Test</strong></td>
-                <td>Kiểm tra logic của từng method/class riêng lẻ</td>
-                <td>JUnit, Mockito</td>
-                <td>Một đơn vị mã nguồn (method, service)</td>
+                <td><strong>Authorization Code</strong></td>
+                <td>Đăng nhập an toàn cho ứng dụng web</td>
+                <td>Social login, ứng dụng server-side</td>
               </tr>
               <tr>
-                <td><strong>Integration Test</strong></td>
-                <td>Kiểm tra sự tích hợp giữa các thành phần (database, API)</td>
-                <td>SpringBootTest, TestRestTemplate</td>
-                <td>Toàn bộ ứng dụng hoặc một module</td>
+                <td><strong>Implicit</strong></td>
+                <td>Ứng dụng client-side (ít dùng)</td>
+                <td>SPA như React, Angular</td>
               </tr>
               <tr>
-                <td><strong>End-to-End Test</strong></td>
-                <td>Kiểm tra toàn bộ luồng từ UI đến backend</td>
-                <td>RestAssured, Selenium</td>
-                <td>Full application flow</td>
+                <td><strong>Client Credentials</strong></td>
+                <td>Xác thực giữa các dịch vụ</td>
+                <td>Machine-to-machine</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p>
-          Mỗi loại test có mục đích và phạm vi khác nhau, nhưng tất cả đều cần thiết để đảm bảo ứng dụng hoạt động đúng.
-        </p>
       </motion.section>
 
       {/* Project Setup */}
@@ -493,49 +495,40 @@ export default function SpringBootTestingBlog() {
         viewport={{ once: true }}
         className="section"
       >
-        <h2>Thiết lập dự án cho Testing</h2>
+        <h2>Thiết lập dự án Spring Boot</h2>
         <p>
-          Để bắt đầu testing, bạn cần thêm các dependencies cần thiết vào dự án Spring Boot.
+          Để tích hợp OAuth2 và social login, chúng ta cần thiết lập dự án với các dependency cần thiết.
         </p>
 
         <h3>Bước 1: Thêm Dependencies</h3>
         <p>
-          Trong <code>pom.xml</code>, thêm các dependencies cho JUnit, Mockito, và Spring Boot Test.
+          Trong <code>pom.xml</code>, thêm các dependency cho Spring Security, OAuth2, và Spring Web.
         </p>
         <motion.div
           whileHover={{ scale: 1.02 }}
           transition={{ type: "spring", stiffness: 300 }}
           className="code-card"
         >
-          <div className="language-label">Maven POM.xml - Test Dependencies</div>
+          <div className="language-label">Maven POM.xml - Dependencies</div>
           <pre>
             <code>
 {`<dependencies>
-    <!-- Spring Boot Starter Test -->
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-test</artifactId>
-        <scope>test</scope>
-    </dependency>
-
-    <!-- JUnit Jupiter -->
-    <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-api</artifactId>
-        <scope>test</scope>
-    </dependency>
-
-    <!-- Mockito -->
-    <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-core</artifactId>
-        <scope>test</scope>
-    </dependency>
-
     <!-- Spring Boot Starter Web -->
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <!-- Spring Security -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+
+    <!-- Spring Security OAuth2 Client -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-oauth2-client</artifactId>
     </dependency>
 
     <!-- Spring Data JPA -->
@@ -565,30 +558,109 @@ export default function SpringBootTestingBlog() {
 
         <h3>Bước 2: Cấu hình Application Properties</h3>
         <p>
-          Cấu hình cơ sở dữ liệu H2 cho testing trong <code>application-test.properties</code>.
+          Cấu hình OAuth2 client cho Google và GitHub trong <code>application.properties</code>.
         </p>
         <motion.div
           whileHover={{ scale: 1.02 }}
           transition={{ type: "spring", stiffness: 300 }}
           className="code-card"
         >
-          <div className="language-label">application-test.properties</div>
+          <div className="language-label">application.properties</div>
           <pre>
             <code>
-{`spring.datasource.url=jdbc:h2:mem:testdb
+{`spring.security.oauth2.client.registration.google.client-id=your-google-client-id
+spring.security.oauth2.client.registration.google.client-secret=your-google-client-secret
+spring.security.oauth2.client.registration.google.scope=openid,profile,email
+spring.security.oauth2.client.registration.google.redirect-uri={baseUrl}/login/oauth2/code/google
+
+spring.security.oauth2.client.registration.github.client-id=your-github-client-id
+spring.security.oauth2.client.registration.github.client-secret=your-github-client-secret
+spring.security.oauth2.client.registration.github.scope=user:email
+spring.security.oauth2.client.registration.github.redirect-uri={baseUrl}/login/oauth2/code/github
+
+spring.datasource.url=jdbc:h2:mem:testdb
 spring.datasource.driverClassName=org.h2.Driver
 spring.jpa.hibernate.ddl-auto=create-drop
-spring.jpa.show-sql=true
 spring.h2.console.enabled=true
 `}
             </code>
           </pre>
         </motion.div>
-
-        <h3>Bước 3: Tạo Entity và Repository</h3>
         <p>
-          Tạo một entity <code>User</code> và repository để sử dụng trong các ví dụ test.
+          <strong>Lưu ý:</strong> Bạn cần đăng ký ứng dụng trên Google Developer Console và GitHub Developer Settings để lấy <code>client-id</code> và <code>client-secret</code>.
         </p>
+      </motion.section>
+
+      {/* Configuring Spring Security */}
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+        viewport={{ once: true }}
+        className="section"
+      >
+        <h2>Cấu hình Spring Security với OAuth2</h2>
+        <p>
+          Tạo một class cấu hình để thiết lập Spring Security hỗ trợ OAuth2 và social login.
+        </p>
+        <motion.div
+          whileHover={{ scale: 1.02 }}
+          transition={{ type: "spring", stiffness: 300 }}
+          className="code-card"
+        >
+          <div className="language-label">Java - SecurityConfig</div>
+          <pre>
+            <code>
+{`import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/", "/login", "/error").permitAll()
+                .anyRequest().authenticated()
+            )
+            .oauth2Login(oauth2 -> oauth2
+                .loginPage("/login")
+                .defaultSuccessUrl("/home", true)
+            )
+            .logout(logout -> logout
+                .logoutSuccessUrl("/").permitAll()
+            );
+        return http.build();
+    }
+}
+`}
+            </code>
+          </pre>
+        </motion.div>
+        <p>
+          Cấu hình trên cho phép truy cập không cần xác thực vào các endpoint <code>/</code>, <code>/login</code>, và <code>/error</code>, đồng thời thiết lập OAuth2 login với redirect URL sau khi đăng nhập thành công.
+        </p>
+      </motion.section>
+
+      {/* Implementing Social Login */}
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+        viewport={{ once: true }}
+        className="section"
+      >
+        <h2>Tích hợp Social Login</h2>
+        <p>
+          Để xử lý thông tin người dùng sau khi đăng nhập, tạo một service để lưu thông tin vào database.
+        </p>
+
+        <h3>Bước 1: Tạo Entity và Repository</h3>
         <motion.div
           whileHover={{ scale: 1.02 }}
           transition={{ type: "spring", stiffness: 300 }}
@@ -607,10 +679,12 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     private String username;
     private String email;
     private String fullName;
+    private String provider; // e.g., google, github
+    private String providerId;
 }
 `}
             </code>
@@ -625,359 +699,127 @@ public class User {
           <pre>
             <code>
 {`import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByUsername(String username);
+    Optional<User> findByEmail(String email);
+    Optional<User> findByProviderAndProviderId(String provider, String providerId);
 }
 `}
             </code>
           </pre>
         </motion.div>
-      </motion.section>
 
-      {/* Unit Testing */}
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.3 }}
-        viewport={{ once: true }}
-        className="section"
-      >
-        <h2>Unit Testing với JUnit và Mockito</h2>
+        <h3>Bước 2: Xử lý thông tin người dùng</h3>
         <p>
-          Unit test tập trung vào việc kiểm tra từng method hoặc class riêng lẻ, sử dụng Mockito để mock các dependency.
-        </p>
-
-        <h3>Ví dụ: Unit Test cho UserService</h3>
-        <p>
-          Tạo <code>UserService</code> để xử lý logic nghiệp vụ.
+          Tạo một service để xử lý thông tin người dùng từ OAuth2 provider.
         </p>
         <motion.div
           whileHover={{ scale: 1.02 }}
           transition={{ type: "spring", stiffness: 300 }}
           className="code-card"
         >
-          <div className="language-label">Java - UserService</div>
+          <div className="language-label">Java - OAuth2UserService</div>
           <pre>
             <code>
 {`import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService {
+public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     @Autowired
     private UserRepository userRepository;
 
-    public User createUser(User user) {
-        if (userRepository.findByUsername(user.getUsername()).isPresent()) {
-            throw new IllegalArgumentException("Username already exists");
-        }
-        return userRepository.save(user);
-    }
+    @Override
+    public OAuth2User loadUser(OAuth2UserRequest userRequest) {
+        OAuth2User oauth2User = super.loadUser(userRequest);
+        String provider = userRequest.getClientRegistration().getRegistrationId();
+        String providerId = oauth2User.getName();
+        String email = oauth2User.getAttribute("email");
+        String fullName = oauth2User.getAttribute("name");
 
-    public User getUserById(Long id) {
-        return userRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
-    }
-}
-`}
-            </code>
-          </pre>
-        </motion.div>
+        User user = userRepository.findByProviderAndProviderId(provider, providerId)
+                .orElseGet(() -> {
+                    User newUser = new User();
+                    newUser.setEmail(email);
+                    newUser.setFullName(fullName);
+                    newUser.setProvider(provider);
+                    newUser.setProviderId(providerId);
+                    return userRepository.save(newUser);
+                });
 
-        <p>
-          Viết unit test cho <code>UserService</code> sử dụng JUnit và Mockito.
-        </p>
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          transition={{ type: "spring", stiffness: 300 }}
-          className="code-card"
-        >
-          <div className="language-label">Java - UserServiceTest</div>
-          <pre>
-            <code>
-{`import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import java.util.Optional;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
-@ExtendWith(MockitoExtension.class)
-public class UserServiceTest {
-
-    @Mock
-    private UserRepository userRepository;
-
-    @InjectMocks
-    private UserService userService;
-
-    @Test
-    public void testCreateUser_Success() {
-        User user = new User();
-        user.setUsername("testuser");
-        user.setEmail("test@example.com");
-        user.setFullName("Test User");
-
-        when(userRepository.findByUsername("testuser")).thenReturn(Optional.empty());
-        when(userRepository.save(user)).thenReturn(user);
-
-        User createdUser = userService.createUser(user);
-
-        assertNotNull(createdUser);
-        assertEquals("testuser", createdUser.getUsername());
-        verify(userRepository, times(1)).findByUsername("testuser");
-        verify(userRepository, times(1)).save(user);
-    }
-
-    @Test
-    public void testCreateUser_UsernameExists() {
-        User user = new User();
-        user.setUsername("testuser");
-
-        when(userRepository.findByUsername("testuser")).thenReturn(Optional.of(user));
-
-        IllegalArgumentException exception = assertThrows(
-                IllegalArgumentException.class,
-                () -> userService.createUser(user)
-        );
-
-        assertEquals("Username already exists", exception.getMessage());
-        verify(userRepository, times(1)).findByUsername("testuser");
-        verify(userRepository, never()).save(any());
-    }
-
-    @Test
-    public void testGetUserById_NotFound() {
-        when(userRepository.findById(1L)).thenReturn(Optional.empty());
-
-        IllegalArgumentException exception = assertThrows(
-                IllegalArgumentException.class,
-                () -> userService.getUserById(1L)
-        );
-
-        assertEquals("User not found", exception.getMessage());
-        verify(userRepository, times(1)).findById(1L);
+        return oauth2User;
     }
 }
 `}
             </code>
           </pre>
         </motion.div>
-
-        <h3>Best Practices cho Unit Test</h3>
-        <div className="steps">
-          <div className="step">
-            <span className="step-number">1</span>
-            <strong>Mock Dependencies:</strong> Sử dụng Mockito để mock các đối tượng như repository, service.
-          </div>
-          <div className="step">
-            <span className="step-number">2</span>
-            <strong>Test One Thing:</strong> Mỗi test chỉ kiểm tra một kịch bản (success, failure, edge cases).
-          </div>
-          <div className="step">
-            <span className="step-number">3</span>
-            <strong>Use Assertions:</strong> Sử dụng các assert method như <code>assertEquals</code>, <code>assertThrows</code>.
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Integration Testing */}
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        viewport={{ once: true }}
-        className="section"
-      >
-        <h2>Integration Testing với @SpringBootTest</h2>
         <p>
-          Integration test kiểm tra sự tương tác giữa các thành phần như controller, service, và database.
+          Service này lưu thông tin người dùng vào database nếu họ chưa tồn tại, dựa trên <code>provider</code> và <code>providerId</code>.
         </p>
 
-        <h3>Ví dụ: Integration Test cho REST API</h3>
+        <h3>Bước 3: Tạo Login Page</h3>
         <p>
-          Tạo một <code>UserController</code> để xử lý REST API.
+          Tạo một controller để hiển thị trang login với các nút đăng nhập Google và GitHub.
         </p>
         <motion.div
           whileHover={{ scale: 1.02 }}
           transition={{ type: "spring", stiffness: 300 }}
           className="code-card"
         >
-          <div className="language-label">Java - UserController</div>
+          <div className="language-label">Java - LoginController</div>
           <pre>
             <code>
-{`import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+{`import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
-@RestController
-@RequestMapping("/api/users")
-public class UserController {
+@Controller
+public class LoginController {
 
-    @Autowired
-    private UserService userService;
-
-    @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        User createdUser = userService.createUser(user);
-        return ResponseEntity.ok(createdUser);
+    @GetMapping("/login")
+    public String login() {
+        return "login";
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<User> getUser(@PathVariable Long id) {
-        User user = userService.getUserById(id);
-        return……
-
-        <h3>Testing với MockMvc</h3>
-        <p>
-          Sử dụng <code>MockMvc</code> để test REST API mà không cần chạy toàn bộ server.
-        </p>
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          transition={{ type: "spring", stiffness: 300 }}
-          className="code-card"
-        >
-          <div className="language-label">Java - UserControllerMockMvcTest</div>
-          <pre>
-            <code>
-{import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-@WebMvcTest(UserController.class)
-public class UserController UnicornsTest {
-
-    @Autowired
-    private MockMvc mockMvc;
-
-    @MockBean
-    private UserService userService;
-
-    @Test
-    public void testCreateUser_Success() throws Exception {
-        User user = new User();
-        user.setUsername("testuser");
-        user.setEmail("test@example.com");
-        user.setFullName("Test User");
-
-        when(userService.createUser(any(User.class))).thenReturn(user);
-
-        mockMvc.perform(post("/api/users")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"username\":\"testuser\",\"email\":\"test@example.com\",\"fullName\":\"Test User\"}"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.username").value("testuser"));
-    }
-
-    @Test
-    public void testGetUser_NotFound() throws Exception {
-        when(userService.getUserById(999L))
-                .thenThrow(new IllegalArgumentException("User not found"));
-
-        mockMvc.perform(get("/api/users/999"))
-                .andExpect(status().isNotFound());
+    @GetMapping("/home")
+    public String home() {
+        return "home";
     }
 }
 `}
             </code>
           </pre>
         </motion.div>
-      </motion.section>
-
-      {/* End-to-End Testing */}
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
-        viewport={{ once: true }}
-        className="section"
-      >
-        <h2>End-to-End Testing</h2>
         <p>
-          End-to-end test kiểm tra toàn bộ luồng ứng dụng từ client đến server. Chúng ta sẽ sử dụng <code>RestAssured</code> để test API.
+          Tạo một trang login đơn giản với Thymeleaf.
         </p>
-
-        <h3>Thêm Dependency cho RestAssured</h3>
         <motion.div
           whileHover={{ scale: 1.02 }}
           transition={{ type: "spring", stiffness: 300 }}
           className="code-card"
         >
-          <div className="language-label">Maven POM.xml - RestAssured</div>
+          <div className="language-label">HTML - login.html</div>
           <pre>
             <code>
-{`<dependency>
-    <groupId>io.rest-assured</groupId>
-    <artifactId>rest-assured</artifactId>
-    <version>5.4.0</version>
-    <scope>test</scope>
-</dependency>
-`}
-            </code>
-          </pre>
-        </motion.div>
-
-        <h3>Ví dụ: End-to-End Test với RestAssured</h3>
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          transition={{ type: "spring", stiffness: 300 }}
-          className="code-card"
-        >
-          <div className="language-label">Java - UserApiEndToEndTest</div>
-          <pre>
-            <code>
-{`import io.restassured.RestAssured;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.server.LocalServerPort;
-
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
-
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class UserApiEndToEndTest {
-
-    @LocalServerPort
-    private int port;
-
-    @BeforeEach
-    public void setup() {
-        RestAssured.port = port;
-    }
-
-    @Test
-    public void testCreateUserEndToEnd() {
-        given()
-                .contentType("application/json")
-                .body("{\"username\":\"testuser\",\"email\":\"test@example.com\",\"fullName\":\"Test User\"}")
-        .when()
-                .post("/api/users")
-        .then()
-                .statusCode(200)
-                .body("username", equalTo("testuser"))
-                .body("email", equalTo("test@example.com"));
-    }
-
-    @Test
-    public void testGetUserNotFoundEndToEnd() {
-        given()
-                .when()
-                .get("/api/users/999")
-                .then()
-                .statusCode(404);
-    }
-}
+{`<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg">
+        <h1 class="text-2xl font-bold mb-6 text-center">Đăng nhập</h1>
+        <a href="/oauth2/authorization/google" class="block bg-blue-500 text-white text-center py-2 mb-4 rounded">Đăng nhập với Google</a>
+        <a href="/oauth2/authorization/github" class="block bg-gray-800 text-white text-center py-2 rounded">Đăng nhập với GitHub</a>
+    </div>
+</body>
+</html>
 `}
             </code>
           </pre>
@@ -988,130 +830,71 @@ public class UserApiEndToEndTest {
       <motion.section
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.6 }}
+        transition={{ duration: 0.8, delay: 0.5 }}
         viewport={{ once: true }}
         className="section"
       >
-        <h2>Best Practices cho Testing trong Spring Boot</h2>
+        <h2>Best Practices cho OAuth2 và Social Login</h2>
         <p>
-          Để viết test hiệu quả và dễ bảo trì, hãy tuân theo các best practices sau:
+          Để triển khai OAuth2 và social login hiệu quả, hãy tuân theo các best practices sau:
         </p>
         <div className="steps">
           <div className="step">
             <span className="step-number">1</span>
-            <strong>Test Isolation:</strong> Mỗi test nên độc lập, không phụ thuộc vào trạng thái của test khác.
+            <strong>Secure Client Secrets:</strong> Lưu <code>client-id</code> và <code>client-secret</code> trong biến môi trường hoặc vault.
           </div>
           <div className="step">
             <span className="step-number">2</span>
-            <strong>Mock External Services:</strong> Sử dụng Mockito để mock các dịch vụ bên ngoài như API, database.
+            <strong>Use HTTPS:</strong> Đảm bảo ứng dụng chạy trên HTTPS để bảo vệ dữ liệu.
           </div>
           <div className="step">
             <span className="step-number">3</span>
-            <strong>Use Profiles:</strong> Sử dụng Spring Profiles (<code>test</code>) để cấu hình riêng cho testing.
+            <strong>Handle Tokens Securely:</strong> Lưu access token an toàn, sử dụng refresh token để làm mới.
           </div>
           <div className="step">
             <span className="step-number">4</span>
-            <strong>Test Coverage:</strong> Sử dụng công cụ như JaCoCo để đo độ bao phủ của test (ít nhất 80%).
+            <strong>Validate Scopes:</strong> Chỉ yêu cầu các scope cần thiết (như <code>email</code>, <code>profile</code>).
           </div>
           <div className="step">
             <span className="step-number">5</span>
-            <strong>Clear Naming:</strong> Đặt tên test rõ ràng, ví dụ: <code>testCreateUser_Success</code>, <code>testGetUser_NotFound</code>.
+            <strong>Error Handling:</strong> Xử lý các lỗi OAuth2 (như token hết hạn) một cách rõ ràng.
           </div>
         </div>
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          transition={{ type: "spring", stiffness: 300 }}
-          className="code-card"
-        >
-          <div className="language-label">Java - Test Profile Example</div>
-          <pre>
-            <code>
-{`@SpringBootTest
-@ActiveProfiles("test")
-public class ProfileBasedTest {
-
-    @Autowired
-    private UserService userService;
-
-    @Test
-    public void testWithTestProfile() {
-        // Test logic with test-specific configuration
-        User user = new User();
-        user.setUsername("testuser");
-        userService.createUser(user);
-        // Assertions
-    }
-}
-`}
-            </code>
-          </pre>
-        </motion.div>
       </motion.section>
 
       {/* Real-world Example */}
       <motion.section
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.7 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
         viewport={{ once: true }}
         className="section"
       >
-        <h2>Ví dụ thực tế: Testing REST API cho User Management</h2>
+        <h2>Ví dụ thực tế: Ứng dụng Social Login</h2>
         <p>
-          Dưới đây là một ví dụ hoàn chỉnh về cách test một REST API quản lý user.
+          Tạo một REST API để lấy thông tin người dùng sau khi đăng nhập.
         </p>
         <motion.div
           whileHover={{ scale: 1.02 }}
           transition={{ type: "spring", stiffness: 300 }}
           className="code-card"
         >
-          <div className="language-label">Java - UserApiIntegrationTest</div>
+          <div className="language-label">Java - UserController</div>
           <pre>
             <code>
-{`import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import static org.junit.jupiter.api.Assertions.*;
+{`import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class UserApiIntegrationTest {
+@RestController
+@RequestMapping("/api/user")
+public class UserController {
 
-    @Autowired
-    private TestRestTemplate restTemplate;
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @BeforeEach
-    public void setup() {
-        userRepository.deleteAll();
-    }
-
-    @Test
-    public void testUserApiFlow() {
-        // Create User
-        User user = new User();
-        user.setUsername("testuser");
-        user.setEmail("test@example.com");
-        user.setFullName("Test User");
-
-        ResponseEntity<User> createResponse = restTemplate.postForEntity(
-                "/api/users", user, User.class);
-
-        assertEquals(HttpStatus.OK, createResponse.getStatusCode());
-        assertNotNull(createResponse.getBody());
-        Long userId = createResponse.getBody().getId();
-
-        // Get User
-        ResponseEntity<User> getResponse = restTemplate.getForEntity(
-                "/api/users/" + userId, User.class);
-
-        assertEquals(HttpStatus.OK, getResponse.getStatusCode());
-        assertEquals("testuser", getResponse.getBody().getUsername());
+    @GetMapping("/profile")
+    public OAuth2User getUserProfile(@AuthenticationPrincipal OAuth2User principal) {
+        return principal;
     }
 }
 `}
@@ -1119,7 +902,7 @@ public class UserApiIntegrationTest {
           </pre>
         </motion.div>
         <p>
-          Ví dụ này kiểm tra toàn bộ luồng tạo và lấy thông tin user, đảm bảo tích hợp giữa controller, service, và repository hoạt động đúng.
+          API này trả về thông tin người dùng (như email, name) sau khi đăng nhập qua OAuth2.
         </p>
       </motion.section>
 
@@ -1127,29 +910,26 @@ public class UserApiIntegrationTest {
       <motion.section
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.8 }}
+        transition={{ duration: 0.8, delay: 0.7 }}
         viewport={{ once: true }}
         className="cta-section"
       >
-        <h2>🚀 Kết luận: Tăng chất lượng mã nguồn với Testing</h2>
+        <h2>🚀 Kết luận: Bảo mật ứng dụng với OAuth2</h2>
         <p>
-          Testing trong Spring Boot giúp bạn xây dựng ứng dụng đáng tin cậy và dễ bảo trì. Từ unit test với JUnit và Mockito, integration test với <code>@SpringBootTest</code>, đến end-to-end test với RestAssured, mỗi loại test đều đóng vai trò quan trọng trong việc đảm bảo chất lượng mã nguồn.
+          Tích hợp OAuth2 và social login vào Spring Boot giúp bạn xây dựng các ứng dụng an toàn, thân thiện với người dùng. Với Spring Security OAuth2 Client, việc triển khai Google và GitHub login trở nên đơn giản và hiệu quả.
         </p>
         <p>
-          Bắt đầu với các test đơn giản, sử dụng best practices như mock dependencies, clear naming, và test isolation. Khi dự án phát triển, hãy mở rộng test coverage và sử dụng công cụ như JaCoCo để đo lường hiệu quả.
-        </p>
-        <p>
-          Nếu bạn cần hỗ trợ viết test phức tạp hơn hoặc tối ưu hóa quy trình CI/CD với testing, hãy liên hệ để được tư vấn chi tiết. Chúc bạn thành công trên hành trình phát triển ứng dụng Spring Boot!
+          Hãy bắt đầu với cấu hình cơ bản, tuân theo best practices như sử dụng HTTPS và quản lý token an toàn. Nếu bạn cần tích hợp thêm các nhà cung cấp khác hoặc xử lý các trường hợp phức tạp, hãy liên hệ để được hỗ trợ.
         </p>
         <a href="/contact">👋 Liên hệ tư vấn miễn phí</a>
       </motion.section>
 
       <motion.img
-        src="https://images.unsplash.com/photo-1618401471353-7f7b268e6d3e?auto=format&fit=crop&w=800&q=80"
-        alt="Testing Success"
+        src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80"
+        alt="OAuth2 Success"
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 1 }}
+        transition={{ duration: 0.8, delay: 0.8 }}
       />
 
       {/* Navigation Buttons */}

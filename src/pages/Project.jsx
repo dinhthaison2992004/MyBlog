@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const projects = [
   {
@@ -63,6 +64,69 @@ export default function Project() {
         fontFamily: "Segoe UI, sans-serif",
       }}
     >
+      <style>{`
+        .cta {
+          background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+          border: 1px solid rgba(255, 255, 255, 0.2); /* Visible border for frame */
+          border-radius: 12px; /* Rounded corners */
+          color: white;
+          text-align: center;
+          padding: 50px 20px; /* Reduced padding for smaller size */
+          width: 100%;
+          max-width: 1000px; /* Reduced max-width for smaller size */
+          margin: 40px auto; /* Consistent margin */
+          backdrop-filter: blur(10px); /* Match project card blur effect */
+          -webkit-backdrop-filter: blur(10px);
+        }
+
+        .cta h2 {
+          font-family: 'Segoe UI', sans-serif; /* Consistent with project font */
+          font-size: 2rem; /* Smaller font size */
+          font-weight: 700; /* Slightly lighter weight for clarity */
+          margin-bottom: 20px; /* Reduced margin */
+          color: #ffffff; /* Bright white for contrast */
+          line-height: 1.4; /* Adjusted for readability */
+          letter-spacing: 0.02em; /* Subtle letter spacing */
+        }
+
+        .cta p {
+          font-family: 'Segoe UI', sans-serif; /* Consistent font */
+          font-size: 1rem; /* Smaller font size */
+          color: #ffffff; /* Bright white for contrast */
+          margin-bottom: 24px; /* Reduced margin */
+          max-width: 700px; /* Reduced max-width */
+          margin-left: auto;
+          margin-right: auto;
+          line-height: 1.6; /* Adjusted for readability */
+          letter-spacing: 0.01em; /* Subtle letter spacing */
+        }
+
+        .cta a {
+          background: linear-gradient(90deg, #2563eb, #1e40af); /* Match project button style */
+          color: white;
+          padding: 12px 32px; /* Slightly reduced padding */
+          border-radius: 8px;
+          font-weight: 600;
+          font-family: 'Segoe UI', sans-serif; /* Consistent font */
+          transition: all 0.3s ease;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+        }
+
+        .cta a:hover {
+          background: linear-gradient(90deg, #1e40af, #2563eb); /* Reverse gradient for hover */
+          transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+          .cta {
+            padding: 40px 15px; /* Further reduced padding for mobile */
+            max-width: 90%; /* Adjust for smaller screens */
+          }
+        }
+      `}</style>
+
       {/* Tiêu đề */}
       <motion.h1
         initial={{ opacity: 0, y: -40 }}
@@ -97,17 +161,17 @@ export default function Project() {
             key={project.id}
             whileHover={{
               scale: 1.03,
-              background: "#e2e8f0", // Xám đậm hơn khi hover
-              border: "1px solid #e2e8f0",
-              boxShadow: "0 6px 20px rgba(0,0,0,0.1)"
+              background: "rgba(255, 255, 255, 0.1)", // Hiệu ứng hover nhẹ với màu trắng mờ
+              border: "1px solid rgba(255, 255, 255, 0.2)", // Viền mờ khi hover
+              boxShadow: "0 6px 20px rgba(0, 0, 0, 0.1)",
             }}
             transition={{ type: "spring", stiffness: 200 }}
             style={{
-              background: "#f1f5f9", // Xám nhẹ ở trạng thái ban đầu
+              background: "transparent", // Khung trong suốt
               borderRadius: "20px",
               overflow: "hidden",
-              border: "none",
-              boxShadow: "none",
+              border: "1px solid rgba(255, 255, 255, 0.1)", // Viền mờ nhẹ ban đầu
+              boxShadow: "none", // Không có shadow ban đầu
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
@@ -140,7 +204,7 @@ export default function Project() {
                 style={{
                   fontSize: "22px",
                   fontWeight: "700",
-                  color: "#1e293b",
+                  color: "#ffffff", // Đổi màu chữ để tương phản trên nền trong suốt
                   marginBottom: "10px",
                 }}
               >
@@ -148,7 +212,7 @@ export default function Project() {
               </h3>
               <p
                 style={{
-                  color: "#475569",
+                  color: "#d1d5db", // Màu xám nhạt để dễ đọc
                   fontSize: "15px",
                   lineHeight: "1.6",
                   marginBottom: "15px",
@@ -253,53 +317,18 @@ export default function Project() {
 
       {/* CTA */}
       <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        style={{
-          marginTop: "100px",
-          textAlign: "center",
-          background: "#2563eb",
-          color: "white",
-          padding: "70px 20px",
-          borderRadius: "20px",
-          boxShadow: "0 8px 30px rgba(37,99,235,0.4)",
-          maxWidth: "1100px",
-          marginInline: "auto",
-        }}
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
       >
-        <h2 style={{ fontSize: "38px", fontWeight: "700", marginBottom: "20px" }}>
-          Bạn có ý tưởng mới? 💡
-        </h2>
-        <p
-          style={{
-            fontSize: "18px",
-            color: "#dbeafe",
-            maxWidth: "600px",
-            margin: "0 auto 40px",
-            lineHeight: "1.6",
-          }}
-        >
-          Tôi luôn sẵn sàng tham gia vào những dự án sáng tạo – từ website đến
-          game và ứng dụng thực tế. Cùng nhau biến ý tưởng thành sản phẩm!
-        </p>
-        <a
-          href="/contact"
-          style={{
-            background: "white",
-            color: "#2563eb",
-            padding: "14px 36px",
-            borderRadius: "12px",
-            fontWeight: "700",
-            textDecoration: "none",
-            boxShadow: "0 4px 15px rgba(255,255,255,0.3)",
-            transition: "0.3s",
-          }}
-          onMouseEnter={(e) => (e.target.style.background = "#eff6ff")}
-          onMouseLeave={(e) => (e.target.style.background = "white")}
-        >
-          Liên hệ với tôi
-        </a>
+        <section className="cta">
+          <h2>Cùng tạo nên điều tuyệt vời 🚀</h2>
+          <p>
+            Nếu bạn có ý tưởng, dự án hoặc chỉ muốn trò chuyện về công nghệ —
+            đừng ngần ngại liên hệ với tôi.
+          </p>
+          <Link to="/contact">💬 Liên hệ ngay</Link>
+        </section>
       </motion.section>
     </div>
   );

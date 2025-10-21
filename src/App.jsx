@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Project from "./pages/Project";
 import Blog from "./pages/Blog";
-import Contact from "./pages/Contact";
+import Project from "./pages/Project";
+
+
 import JavaLaGi from "./components/post/Java_la_gi"; 
 import RestApiSpringBoot from "./components/post/RestApiSpringBoot";
 import SpringBootCloudDeployment from "./components/post/SpringBootCloudDeployment";
@@ -15,6 +16,8 @@ import SpringBootCachingBlog from "./components/post/SpringBootCachingBlog";
 import JavaBasicsBlog from "./components/post/JavaBasicsBlog";
 import SpringBootPaymentIntegrationBlog from "./components/post/SpringBootPaymentIntegrationBlog";
 import SpringBootTestingBlog from "./components/post/SpringBootTestingBlog";
+import SpringBootOAuth2Blog from "./components/post/SpringBootOAuth2Blog";
+
 const App = () => {
   return (
     <>
@@ -53,27 +56,25 @@ const App = () => {
 
       <Router>
         <div className="app-container">
-          {/* ✅ Thanh điều hướng luôn hiển thị */}
           <Navbar />
-
           <main className="app-main">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
-              <Route path="/project" element={<Project />} />
               <Route path="/blog" element={<Blog />} />
-              <Route path="/contact" element={<Contact />} />
+              <Route path="/project" element={<Project />} />
 
-              {/* ✅ Đường dẫn riêng cho từng bài viết */}
+              {/* Routes cho từng bài viết */}
               <Route path="/java-la-gi" element={<JavaLaGi />} />
-              <Route path="/rest-api-spring-boot" element={<RestApiSpringBoot />} /> {/* ✅ thêm route */}
-              <Route path="/spring-boot-cloud-deployment" element={<SpringBootCloudDeployment />} /> {/* ✅ thêm route */}
-              <Route path="spring-security-jwt" element={<SpringSecurityBlog />} /> {/* ✅ thêm route */}
-              <Route path="/java-collections" element={<JavaCollectionsBlog />} /> {/* ✅ thêm route */}
-              <Route path="/spring-boot-caching" element={<SpringBootCachingBlog />} /> {/* ✅ thêm route */}
-              <Route path="java-basics" element={<JavaBasicsBlog/>} /> {/* Ví dụ thêm route */}
-             <Route path="/spring-boot-payment-integration" element={<SpringBootPaymentIntegrationBlog/>} /> {/* Ví dụ thêm route */}
-              <Route path="/spring-boot-testing" element={<SpringBootTestingBlog/>} /> {/* Ví dụ thêm route */}
+              <Route path="/rest-api-spring-boot" element={<RestApiSpringBoot />} />
+              <Route path="/spring-boot-cloud-deployment" element={<SpringBootCloudDeployment />} />
+              <Route path="/spring-security-jwt" element={<SpringSecurityBlog />} />
+              <Route path="/java-collections" element={<JavaCollectionsBlog />} />
+              <Route path="/spring-boot-caching" element={<SpringBootCachingBlog />} />
+              <Route path="/java-basics" element={<JavaBasicsBlog />} />
+              <Route path="/spring-boot-payment-integration" element={<SpringBootPaymentIntegrationBlog />} />
+              <Route path="/spring-boot-testing" element={<SpringBootTestingBlog />} />
+              <Route path="/spring-boot-oauth2" element={<SpringBootOAuth2Blog />} />
             </Routes>
           </main>
         </div>
