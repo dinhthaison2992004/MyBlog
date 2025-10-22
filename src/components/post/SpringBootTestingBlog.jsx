@@ -396,18 +396,7 @@ export default function SpringBootTestingBlog() {
         </p>
       </motion.header>
 
-      {/* Main Image */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="main-image"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1618401471353-7f7b268e6d3e?auto=format&fit=crop&w=1200&q=80"
-          alt="Spring Boot Testing"
-        />
-      </motion.div>
+      
 
       {/* Introduction */}
       <motion.section
@@ -1123,34 +1112,7 @@ public class UserApiIntegrationTest {
         </p>
       </motion.section>
 
-      {/* Conclusion */}
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.8 }}
-        viewport={{ once: true }}
-        className="cta-section"
-      >
-        <h2>🚀 Kết luận: Tăng chất lượng mã nguồn với Testing</h2>
-        <p>
-          Testing trong Spring Boot giúp bạn xây dựng ứng dụng đáng tin cậy và dễ bảo trì. Từ unit test với JUnit và Mockito, integration test với <code>@SpringBootTest</code>, đến end-to-end test với RestAssured, mỗi loại test đều đóng vai trò quan trọng trong việc đảm bảo chất lượng mã nguồn.
-        </p>
-        <p>
-          Bắt đầu với các test đơn giản, sử dụng best practices như mock dependencies, clear naming, và test isolation. Khi dự án phát triển, hãy mở rộng test coverage và sử dụng công cụ như JaCoCo để đo lường hiệu quả.
-        </p>
-        <p>
-          Nếu bạn cần hỗ trợ viết test phức tạp hơn hoặc tối ưu hóa quy trình CI/CD với testing, hãy liên hệ để được tư vấn chi tiết. Chúc bạn thành công trên hành trình phát triển ứng dụng Spring Boot!
-        </p>
-        <a href="/contact">👋 Liên hệ tư vấn miễn phí</a>
-      </motion.section>
-
-      <motion.img
-        src="https://images.unsplash.com/photo-1618401471353-7f7b268e6d3e?auto=format&fit=crop&w=800&q=80"
-        alt="Testing Success"
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 1 }}
-      />
+      
 
       {/* Navigation Buttons */}
       {showButtons && (

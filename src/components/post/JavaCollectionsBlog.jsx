@@ -869,34 +869,7 @@ public class StudentManagement {
         </p>
       </motion.section>
 
-      {/* Conclusion */}
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.7 }}
-        viewport={{ once: true }}
-        className="cta-section"
-      >
-        <h2>🚀 Kết luận: Chọn Collection phù hợp cho ứng dụng của bạn</h2>
-        <p>
-          Java Collections Framework cung cấp các công cụ mạnh mẽ để quản lý dữ liệu với <strong>List</strong>, <strong>Set</strong>, và <strong>Map</strong>. Việc hiểu rõ đặc điểm và hiệu suất của từng loại sẽ giúp bạn đưa ra quyết định đúng đắn khi thiết kế ứng dụng.
-        </p>
-        <p>
-          Hãy bắt đầu bằng cách chọn <code>ArrayList</code> cho danh sách có thứ tự, <code>HashSet</code> cho tập hợp không trùng lặp, và <code>HashMap</code> cho ánh xạ key-value. Từ đó, tùy chỉnh dựa trên yêu cầu cụ thể như sắp xếp (<code>TreeSet</code>, <code>TreeMap</code>) hoặc duy trì thứ tự thêm vào (<code>LinkedHashSet</code>, <code>LinkedHashMap</code>).
-        </p>
-        <p>
-          Nếu bạn cần tư vấn thêm về cách tối ưu hóa Collections trong dự án Java, hoặc muốn tìm hiểu sâu hơn về các cấu trúc dữ liệu khác, hãy liên hệ để được hỗ trợ!
-        </p>
-        <a href="/contact">👋 Liên hệ tư vấn miễn phí</a>
-      </motion.section>
-
-      <motion.img
-        src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=800&q=80"
-        alt="Collections Success"
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 1 }}
-      />
+     
 
       {/* Navigation Buttons */}
       {showButtons && (

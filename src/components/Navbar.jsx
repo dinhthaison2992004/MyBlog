@@ -22,7 +22,7 @@ const Navbar = () => {
         <div className="navbar-container">
           {/* Logo */}
           <Link to="/" className="navbar-logo">
-            DinhSon.dev
+            MindStation
           </Link>
 
           {/* Hamburger Button for Mobile */}

@@ -906,31 +906,7 @@ public class UserController {
         </p>
       </motion.section>
 
-      {/* Conclusion */}
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.7 }}
-        viewport={{ once: true }}
-        className="cta-section"
-      >
-        <h2>🚀 Kết luận: Bảo mật ứng dụng với OAuth2</h2>
-        <p>
-          Tích hợp OAuth2 và social login vào Spring Boot giúp bạn xây dựng các ứng dụng an toàn, thân thiện với người dùng. Với Spring Security OAuth2 Client, việc triển khai Google và GitHub login trở nên đơn giản và hiệu quả.
-        </p>
-        <p>
-          Hãy bắt đầu với cấu hình cơ bản, tuân theo best practices như sử dụng HTTPS và quản lý token an toàn. Nếu bạn cần tích hợp thêm các nhà cung cấp khác hoặc xử lý các trường hợp phức tạp, hãy liên hệ để được hỗ trợ.
-        </p>
-        <a href="/contact">👋 Liên hệ tư vấn miễn phí</a>
-      </motion.section>
-
-      <motion.img
-        src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80"
-        alt="OAuth2 Success"
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 0.8 }}
-      />
+      
 
       {/* Navigation Buttons */}
       {showButtons && (

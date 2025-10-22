@@ -1589,34 +1589,7 @@ public class PaymentIntegrationTest {
         </div>
       </motion.section>
 
-      {/* Conclusion */}
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.9 }}
-        viewport={{ once: true }}
-        className="cta-section"
-      >
-        <h2>🚀 Kết luận: Xây dựng hệ thống thanh toán hoàn chỉnh</h2>
-        <p>
-          Tích hợp thanh toán vào ứng dụng Spring Boot mở ra cơ hội thương mại hóa và mở rộng doanh thu cho dự án của bạn. Với VNPAY cho thị trường Việt Nam, Stripe cho thanh toán quốc tế, và PayPal cho phạm vi toàn cầu, bạn có thể tạo ra một hệ thống thanh toán đa dạng và linh hoạt.
-        </p>
-        <p>
-          Hãy bắt đầu với môi trường sandbox để test kỹ lưỡng, sau đó triển khai production với các best practices về bảo mật và monitoring. Đừng quên xử lý lỗi một cách graceful và cung cấp trải nghiệm người dùng mượt mà cho khách hàng.
-        </p>
-        <p>
-          Nếu bạn cần hỗ trợ thêm về tích hợp thanh toán, tối ưu hóa performance, hoặc xử lý các trường hợp edge case phức tạp, hãy liên hệ để được tư vấn chi tiết. Chúc bạn thành công với việc xây dựng hệ thống thanh toán mạnh mẽ và an toàn!
-        </p>
-        <a href="/contact">👋 Liên hệ tư vấn miễn phí</a>
-      </motion.section>
-
-      <motion.img
-        src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80"
-        alt="Payment Success"
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 1 }}
-      />
+      
 
       {/* Navigation Buttons */}
       {showButtons && (

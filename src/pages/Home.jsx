@@ -509,7 +509,7 @@ export default function Home() {
             </p>
 
             <div className="hero-buttons">
-              <Link to="/projects" className="btn btn-primary">
+              <Link to="/project" className="btn btn-primary">
                 🌟 Xem Dự Án
               </Link>
               <Link to="/about" className="btn btn-outline">

@@ -316,9 +316,10 @@ export default function Blog() {
           viewport={{ once: true }}
         >
           <img
-            src="https://images.unsplash.com/photo-1618401471353-7f7b268e6d3e?auto=format&fit=crop&w=1200&q=80"
-            alt="Testing trong Spring Boot"
-          />
+  src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80"
+  alt="Testing trong Spring Boot"
+/>
+
           <h2>Testing trong Spring Boot</h2>
           <p>
             Tìm hiểu cách viết unit test, integration test, và end-to-end test cho ứng dụng Spring Boot sử dụng JUnit, Mockito, và RestAssured.

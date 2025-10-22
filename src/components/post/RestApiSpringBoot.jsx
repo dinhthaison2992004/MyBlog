@@ -378,13 +378,7 @@ pom.xml
             </code>
           </pre>
         </motion.div>
-        <motion.img
-          src="https://images.unsplash.com/photo-1516321318423-f06f85e756b6?auto=format&fit=crop&w=800&q=80"
-          alt="Spring Boot Setup"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-        />
+        
       </motion.section>
 
       {/* Tạo Model */}
@@ -743,13 +737,7 @@ curl -X DELETE http://localhost:8080/api/users/1
           <li>Sử dụng Postman để dễ dàng kiểm tra và trực quan hóa kết quả.</li>
           <li>Kiểm tra H2 console tại <code>http://localhost:8080/h2-console</code> để xem dữ liệu trong cơ sở dữ liệu.</li>
         </ul>
-        <motion.img
-          src="https://images.unsplash.com/photo-1516321318423-f06f85e756b6?auto=format&fit=crop&w=800&q=80"
-          alt="Postman Testing"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-        />
+        
       </motion.section>
 
       

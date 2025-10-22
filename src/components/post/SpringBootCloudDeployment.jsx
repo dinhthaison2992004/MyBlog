@@ -1157,13 +1157,7 @@ public class MonitoringConfig {
           Implement GitHub Actions hoặc Azure DevOps pipeline với testing, security scanning, và blue-green deployment.
         </p>
 
-        <motion.img
-          src="https://images.unsplash.com/photo-1554224154-aa004954f63e?auto=format&fit=crop&w=800&q=80"
-          alt="Monitoring Dashboard"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-        />
+        
 
         <h3>5. Disaster Recovery</h3>
         <ul>
@@ -1174,33 +1168,7 @@ public class MonitoringConfig {
       </motion.section>
 
       {/* Conclusion */}
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.7 }}
-        viewport={{ once: true }}
-        className="cta-section"
-      >
-        <h2>🚀 Kết luận: Chọn nền tảng phù hợp và triển khai ngay!</h2>
-        <p>
-          Việc triển khai Spring Boot lên cloud mở ra vô vàn cơ hội cho ứng dụng của bạn về scalability, reliability, và global reach. Tùy thuộc vào nhu cầu cụ thể – từ MVP nhanh chóng trên Render, prototyping linh hoạt trên Heroku, enterprise scaling trên AWS, hay Microsoft integration trên Azure – mỗi nền tảng đều có chỗ đứng riêng.
-        </p>
-        <p>
-          Hãy bắt đầu với free tier của một nền tảng phù hợp, experiment với các configurations, và dần dần migrate sang production setup. Nhớ rằng, DevOps là journey không có điểm kết thúc – continuous learning và optimization sẽ giúp ứng dụng của bạn luôn ở top performance.
-        </p>
-        <p>
-          Nếu bạn cần tư vấn cụ thể về architecture design, cost optimization, hoặc troubleshooting deployment issues, đừng ngần ngại liên hệ. Chúc bạn thành công với hành trình cloud-native development!
-        </p>
-        <a href="/contact">👋 Liên hệ tư vấn miễn phí</a>
-      </motion.section>
-
-      <motion.img
-        src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80"
-        alt="Cloud Success"
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 1 }}
-      />
+      
 
       {/* Navigation Buttons */}
       {showButtons && (

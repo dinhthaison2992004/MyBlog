@@ -873,23 +873,7 @@ export default function JavaBasicsBlog() {
         </motion.div>
       </motion.section>
 
-      {/* Conclusion */}
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.6 }}
-        viewport={{ once: true }}
-        className="cta-section"
-      >
-        <h2>🚀 Kết luận: Nắm vững nền tảng Java</h2>
-        <p>
-          Các kiểu dữ liệu, biến, và vòng lặp là những khối xây dựng cơ bản của lập trình Java. Hiểu rõ cách sử dụng chúng sẽ giúp bạn viết mã hiệu quả và dễ đọc. Bắt đầu với các kiểu dữ liệu nguyên thủy như <code>int</code>, <code>double</code>, sử dụng biến với tên ý nghĩa, và chọn vòng lặp phù hợp với nhu cầu của bạn.
-        </p>
-        <p>
-          Nếu bạn muốn học thêm về Java hoặc cần hỗ trợ xây dựng các chương trình phức tạp hơn, hãy tiếp tục theo dõi blog hoặc liên hệ để được tư vấn chi tiết. Chúc bạn thành công trên hành trình học lập trình Java!
-        </p>
-        <a href="/contact">👋 Liên hệ tư vấn miễn phí</a>
-      </motion.section>
+      
 
       {/* Navigation Buttons */}
       {showButtons && (

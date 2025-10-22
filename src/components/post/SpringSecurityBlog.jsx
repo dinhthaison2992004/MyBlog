@@ -403,13 +403,7 @@ export default function SpringSecurityBlog() {
         <p>
           Kết hợp Spring Security và JWT cho phép xây dựng hệ thống xác thực stateless, phù hợp với các ứng dụng phân tán và microservices.
         </p>
-        <motion.img
-          src="https://images.unsplash.com/photo-1555949963-ff2c6c66f7b6?auto=format&fit=crop&w=800&q=80"
-          alt="JWT Structure"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-        />
+        
       </motion.section>
 
       {/* Setting Up Spring Security */}
@@ -1097,34 +1091,7 @@ public class SecurityTests {
         </motion.div>
       </motion.section>
 
-      {/* Conclusion */}
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.6 }}
-        viewport={{ once: true }}
-        className="cta-section"
-      >
-        <h2>🚀 Kết luận: Xây dựng ứng dụng an toàn với Spring Security và JWT</h2>
-        <p>
-          Spring Security kết hợp với JWT và RBAC cung cấp một giải pháp bảo mật mạnh mẽ, linh hoạt cho các ứng dụng Spring Boot. Từ việc xác thực người dùng, quản lý vai trò, đến triển khai refresh token, bạn có thể xây dựng hệ thống bảo mật đáp ứng các yêu cầu khắt khe của môi trường production.
-        </p>
-        <p>
-          Hãy bắt đầu bằng cách tích hợp cấu hình cơ bản, sau đó mở rộng với refresh token và các best practices như đã đề cập. Đừng quên kiểm tra kỹ lưỡng và giám sát hệ thống để phát hiện các lỗ hổng bảo mật kịp thời.
-        </p>
-        <p>
-          Nếu bạn cần hỗ trợ thêm về triển khai Spring Security, tối ưu hóa bảo mật, hoặc xử lý các vấn đề phức tạp, hãy liên hệ để được tư vấn chi tiết. Chúc bạn thành công với việc xây dựng các ứng dụng an toàn và mạnh mẽ!
-        </p>
-        <a href="/contact">👋 Liên hệ tư vấn miễn phí</a>
-      </motion.section>
-
-      <motion.img
-        src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80"
-        alt="Security Success"
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 1 }}
-      />
+     
     </div>
   );
 }

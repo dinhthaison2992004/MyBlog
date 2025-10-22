@@ -1106,34 +1106,7 @@ public class ProductService {
         </p>
       </motion.section>
 
-      {/* Conclusion */}
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.6 }}
-        viewport={{ once: true }}
-        className="cta-section"
-      >
-        <h2>🚀 Kết luận: Tăng tốc ứng dụng với Caching trong Spring Boot</h2>
-        <p>
-          Caching là một công cụ mạnh mẽ để cải thiện hiệu suất ứng dụng Spring Boot, đặc biệt trong các tình huống liên quan đến truy vấn dữ liệu lặp lại hoặc tốn kém. Với Spring Cache, bạn có thể dễ dàng tích hợp caching bằng các annotation như <code>@Cacheable</code>, <code>@CachePut</code>, và <code>@CacheEvict</code>.
-        </p>
-        <p>
-          Hãy bắt đầu với cache provider đơn giản như Caffeine, sau đó mở rộng sang Redis nếu cần hỗ trợ phân tán. Đừng quên áp dụng các best practices như quản lý cache key, đặt thời gian hết hạn hợp lý, và giám sát hiệu suất cache.
-        </p>
-        <p>
-          Nếu bạn cần hỗ trợ thêm về triển khai caching, tối ưu hóa hiệu suất, hoặc tích hợp với các hệ thống phức tạp, hãy liên hệ để được tư vấn chi tiết. Chúc bạn thành công với việc xây dựng các ứng dụng nhanh và hiệu quả!
-        </p>
-        <a href="/contact">👋 Liên hệ tư vấn miễn phí</a>
-      </motion.section>
-
-      <motion.img
-        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
-        alt="Caching Success"
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 1 }}
-      />
+      
 
       {/* Navigation Buttons */}
       {showButtons && (
