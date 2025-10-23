@@ -347,19 +347,7 @@ export default function JavaLaGi() {
           <li><strong>2010</strong>: Oracle mua lại Sun Microsystems, tiếp tục phát triển Java.</li>
           <li><strong>2025</strong>: Java 21+ với các cải tiến về hiệu suất, pattern matching, và module hóa.</li>
         </ul>
-        <motion.img
-        src="/images/javalagi/history.jpg" // hoặc link Unsplash nếu muốn
-        alt="Java History"
-        style={{
-          width: "100%",
-          maxWidth: "800px",
-          borderRadius: "12px",
-          boxShadow: "0 10px 20px rgba(0,0,0,0.3)",
-        }}
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8 }}
-      />
+        
       </motion.section>
 
       {/* Đặc điểm nổi bật */}
