@@ -1,8 +1,109 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 export default function Blog() {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const blogPosts = [
+    {
+      id: 1,
+      title: "Java là gì? Tìm hiểu ngôn ngữ lập trình phổ biến nhất thế giới",
+      description:
+        "Bài viết giúp bạn hiểu rõ về Java, lịch sử ra đời, ưu điểm và lý do Java vẫn là ngôn ngữ được ưa chuộng nhất hiện nay.",
+      image:
+        "https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&w=1200&q=80",
+      link: "/java-la-gi",
+    },
+    {
+      id: 2,
+      title: "Tạo RESTful API đơn giản với Spring Boot (GET, POST, PUT, DELETE)",
+      description:
+        "Hướng dẫn chi tiết cách xây dựng RESTful API với Spring Boot, bao gồm các phương thức GET, POST, PUT, DELETE để quản lý tài nguyên người dùng.",
+      image:
+        "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
+      link: "/rest-api-spring-boot",
+    },
+    {
+      id: 3,
+      title: "Triển khai ứng dụng Spring Boot lên Cloud (Render, Heroku, AWS, Azure)",
+      description:
+        "Tìm hiểu cách triển khai ứng dụng Spring Boot lên các nền tảng cloud như Render, Heroku, AWS Elastic Beanstalk và Azure App Service với hướng dẫn chi tiết và best practices.",
+      image:
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+      link: "/spring-boot-cloud-deployment",
+    },
+    {
+      id: 4,
+      title: "Spring Security: Xác thực và Phân quyền Người dùng với JWT và Role-based Access Control",
+      description:
+        "Hướng dẫn cách tích hợp Spring Security với JWT và RBAC để xây dựng hệ thống xác thực và phân quyền an toàn cho ứng dụng Spring Boot.",
+      image:
+        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+      link: "/spring-security-jwt",
+    },
+    {
+      id: 5,
+      title: "Các Collection trong Java (List, Set, Map) – Khi nào nên dùng loại nào?",
+      description:
+        "Tìm hiểu về List, Set, và Map trong Java Collections Framework, cách sử dụng và các tình huống thực tế để chọn cấu trúc dữ liệu phù hợp.",
+      image:
+        "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80",
+      link: "/java-collections",
+    },
+    {
+      id: 6,
+      title: "Caching trong Spring Boot: Tăng tốc ứng dụng với bộ nhớ đệm",
+      description:
+        "Hướng dẫn cách sử dụng Spring Cache để tối ưu hóa hiệu suất ứng dụng Spring Boot với các cache provider như Caffeine và Redis.",
+      image:
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+      link: "/spring-boot-caching",
+    },
+    {
+      id: 7,
+      title: "Giới thiệu về các kiểu dữ liệu, biến và vòng lặp trong Java",
+      description:
+        "Tìm hiểu các kiểu dữ liệu nguyên thủy, cách khai báo biến và sử dụng vòng lặp (for, while, do-while) trong Java dành cho người mới bắt đầu.",
+      image:
+        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+      link: "/java-basics",
+    },
+    {
+      id: 8,
+      title: "Tích hợp thanh toán (VNPAY, Stripe, PayPal) trong ứng dụng Spring Boot",
+      description:
+        "Hướng dẫn chi tiết cách tích hợp các cổng thanh toán VNPAY, Stripe, và PayPal vào ứng dụng Spring Boot, bao gồm xử lý webhook và best practices.",
+      image:
+        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80",
+      link: "/spring-boot-payment-integration",
+    },
+    {
+      id: 9,
+      title: "Testing trong Spring Boot",
+      description:
+        "Tìm hiểu cách viết unit test, integration test, và end-to-end test cho ứng dụng Spring Boot sử dụng JUnit, Mockito, và RestAssured.",
+      image:
+        "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
+      link: "/spring-boot-testing",
+    },
+    {
+      id: 10,
+      title: "Spring Boot với OAuth2 & Social Login",
+      description:
+        "Hướng dẫn tích hợp OAuth2 và social login (Google, GitHub) vào ứng dụng Spring Boot với Spring Security, đảm bảo xác thực an toàn.",
+      image:
+        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+      link: "/spring-boot-oauth2",
+    },
+  ];
+
+  const filteredPosts = blogPosts.filter(
+    (post) =>
+      post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="container">
       <style>
@@ -19,13 +120,69 @@ export default function Blog() {
             font-size: 2.5rem;
             font-weight: 800;
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             background: linear-gradient(to right, #a5b4fc, #ffffff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+          }
+
+          .quote {
+            text-align: center;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+          }
+
+          .search-container {
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+            position: relative;
+          }
+
+          .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            color: #ffffff;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+          }
+
+          .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+          }
+
+          .search-input:focus {
+            border-color: #a5b4fc;
+            box-shadow: 0 0 8px rgba(165, 180, 252, 0.3);
+          }
+
+          .search-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+          }
+
+          .no-results {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+            margin: 2rem 0;
           }
 
           .grid {
@@ -45,7 +202,7 @@ export default function Blog() {
             -webkit-backdrop-filter: blur(10px);
             display: flex;
             flex-direction: column;
-            min-height: 400px; /* Ensure consistent card height */
+            min-height: 400px;
           }
 
           .card:hover {
@@ -73,7 +230,7 @@ export default function Blog() {
             color: rgba(255, 255, 255, 0.8);
             margin-bottom: 1rem;
             line-height: 1.5;
-            flex-grow: 1; /* Allow description to take available space */
+            flex-grow: 1;
           }
 
           .card a {
@@ -85,8 +242,8 @@ export default function Blog() {
             border-radius: 0.5rem;
             text-decoration: none;
             transition: background 0.3s ease, transform 0.2s ease;
-            margin-top: auto; /* Push button to the bottom */
-            align-self: flex-start; /* Align button to start for consistency */
+            margin-top: auto;
+            align-self: flex-start;
           }
 
           .card a:hover {
@@ -94,50 +251,49 @@ export default function Blog() {
             transform: scale(1.05);
           }
 
-          /* CTA SECTION */
           .cta {
-            background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
-            border: 1px solid rgba(255, 255, 255, 0.2); /* Visible border for frame */
-            border-radius: 12px; /* Rounded corners */
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
             color: white;
             text-align: center;
-            padding: 50px 20px; /* Reduced padding for smaller size */
+            padding: 50px 20px;
             width: 100%;
-            max-width: 1000px; /* Reduced max-width for smaller size */
-            margin: 3rem auto; /* Consistent margin with blog layout */
-            backdrop-filter: blur(10px); /* Match blog card blur effect */
+            max-width: 1000px;
+            margin: 3rem auto;
+            backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
           }
 
           .cta h2 {
-            font-family: 'Inter', sans-serif; /* Clean, consistent font */
-            font-size: 2rem; /* Smaller font size */
-            font-weight: 700; /* Slightly lighter weight for clarity */
-            margin-bottom: 20px; /* Reduced margin */
-            color: #ffffff; /* Bright white for contrast */
-            line-height: 1.4; /* Adjusted for readability */
-            letter-spacing: 0.02em; /* Subtle letter spacing */
+            font-family: 'Inter', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #ffffff;
+            line-height: 1.4;
+            letter-spacing: 0.02em;
           }
 
           .cta p {
-            font-family: 'Inter', sans-serif; /* Consistent font */
-            font-size: 1rem; /* Smaller font size */
-            color: #ffffff; /* Bright white for contrast */
-            margin-bottom: 24px; /* Reduced margin */
-            max-width: 700px; /* Reduced max-width */
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: #ffffff;
+            margin-bottom: 24px;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
-            line-height: 1.6; /* Adjusted for readability */
-            letter-spacing: 0.01em; /* Subtle letter spacing */
+            line-height: 1.6;
+            letter-spacing: 0.01em;
           }
 
           .cta a {
-            background: linear-gradient(90deg, #4f46e5, #7c3aed); /* Match blog button style */
+            background: linear-gradient(90deg, #4f46e5, #7c3aed);
             color: white;
-            padding: 12px 32px; /* Slightly reduced padding */
+            padding: 12px 32px;
             border-radius: 8px;
             font-weight: 600;
-            font-family: 'Inter', sans-serif; /* Consistent font */
+            font-family: 'Inter', sans-serif;
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-flex;
@@ -145,7 +301,7 @@ export default function Blog() {
           }
 
           .cta a:hover {
-            background: linear-gradient(90deg, #6366f1, #a855f7); /* Match blog button hover style */
+            background: linear-gradient(90deg, #6366f1, #a855f7);
             transform: translateY(-2px);
           }
 
@@ -154,197 +310,81 @@ export default function Blog() {
               font-size: 2rem;
             }
 
+            .quote {
+              font-size: 1rem;
+              padding: 0 1rem;
+            }
+
+            .search-container {
+              max-width: 90%;
+            }
+
             .grid {
               grid-template-columns: 1fr;
             }
 
             .card {
-              min-height: 350px; /* Adjust for smaller screens */
+              min-height: 350px;
             }
 
             .cta {
-              padding: 40px 15px; /* Further reduced padding for mobile */
-              max-width: 90%; /* Adjust for smaller screens */
+              padding: 40px 15px;
+              max-width: 90%;
             }
           }
         `}
       </style>
       <h1 className="title">📝 Blog Lập Trình</h1>
+      <p className="quote">
+        "Lập trình là nghệ thuật biến ý tưởng thành hiện thực thông qua những dòng code." – Anonymous
+      </p>
+      <motion.div
+        className="search-container"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <input
+          type="text"
+          className="search-input"
+          placeholder="Tìm kiếm bài viết..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <svg
+          className="search-icon"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      </motion.div>
       <div className="grid">
-        <motion.div
-          className="card"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          viewport={{ once: true }}
-        >
-          <img
-            src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&w=1200&q=80"
-            alt="Java là gì"
-          />
-          <h2>Java là gì? Tìm hiểu ngôn ngữ lập trình phổ biến nhất thế giới</h2>
-          <p>
-            Bài viết giúp bạn hiểu rõ về Java, lịch sử ra đời, ưu điểm và lý do
-            Java vẫn là ngôn ngữ được ưa chuộng nhất hiện nay.
-          </p>
-          <a href="/java-la-gi">Xem thêm →</a>
-        </motion.div>
-        <motion.div
-          className="card"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          <img
-            src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80"
-            alt="RESTful API với Spring Boot"
-          />
-          <h2>Tạo RESTful API đơn giản với Spring Boot (GET, POST, PUT, DELETE)</h2>
-          <p>
-            Hướng dẫn chi tiết cách xây dựng RESTful API với Spring Boot, bao gồm các phương thức GET, POST, PUT, DELETE để quản lý tài nguyên người dùng.
-          </p>
-          <a href="/rest-api-spring-boot">Xem thêm →</a>
-        </motion.div>
-        <motion.div
-          className="card"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          viewport={{ once: true }}
-        >
-          <img
-            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80"
-            alt="Triển khai Spring Boot lên Cloud"
-          />
-          <h2>Triển khai ứng dụng Spring Boot lên Cloud (Render, Heroku, AWS, Azure)</h2>
-          <p>
-            Tìm hiểu cách triển khai ứng dụng Spring Boot lên các nền tảng cloud như Render, Heroku, AWS Elastic Beanstalk và Azure App Service với hướng dẫn chi tiết và best practices.
-          </p>
-          <a href="/spring-boot-cloud-deployment">Xem thêm →</a>
-        </motion.div>
-        <motion.div
-          className="card"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-        >
-          <img
-            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
-            alt="Spring Security với JWT"
-          />
-          <h2>Spring Security: Xác thực và Phân quyền Người dùng với JWT và Role-based Access Control</h2>
-          <p>
-            Hướng dẫn cách tích hợp Spring Security với JWT và RBAC để xây dựng hệ thống xác thực và phân quyền an toàn cho ứng dụng Spring Boot.
-          </p>
-          <a href="/spring-security-jwt">Xem thêm →</a>
-        </motion.div>
-        <motion.div
-          className="card"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <img
-            src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80"
-            alt="Java Collections"
-          />
-          <h2>Các Collection trong Java (List, Set, Map) – Khi nào nên dùng loại nào?</h2>
-          <p>
-            Tìm hiểu về List, Set, và Map trong Java Collections Framework, cách sử dụng và các tình huống thực tế để chọn cấu trúc dữ liệu phù hợp.
-          </p>
-          <a href="/java-collections">Xem thêm →</a>
-        </motion.div>
-        <motion.div
-          className="card"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <img
-            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80"
-            alt="Caching trong Spring Boot"
-          />
-          <h2>Caching trong Spring Boot: Tăng tốc ứng dụng với bộ nhớ đệm</h2>
-          <p>
-            Hướng dẫn cách sử dụng Spring Cache để tối ưu hóa hiệu suất ứng dụng Spring Boot với các cache provider như Caffeine và Redis.
-          </p>
-          <a href="/spring-boot-caching">Xem thêm →</a>
-        </motion.div>
-        <motion.div
-          className="card"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          viewport={{ once: true }}
-        >
-          <img
-            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
-            alt="Java Basics"
-          />
-          <h2>Giới thiệu về các kiểu dữ liệu, biến và vòng lặp trong Java</h2>
-          <p>
-            Tìm hiểu các kiểu dữ liệu nguyên thủy, cách khai báo biến và sử dụng vòng lặp (for, while, do-while) trong Java dành cho người mới bắt đầu.
-          </p>
-          <a href="/java-basics">Xem thêm →</a>
-        </motion.div>
-        <motion.div
-          className="card"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <img
-            src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80"
-            alt="Payment Integration"
-          />
-          <h2>Tích hợp thanh toán (VNPAY, Stripe, PayPal) trong ứng dụng Spring Boot</h2>
-          <p>
-            Hướng dẫn chi tiết cách tích hợp các cổng thanh toán VNPAY, Stripe, và PayPal vào ứng dụng Spring Boot, bao gồm xử lý webhook và best practices.
-          </p>
-          <a href="/spring-boot-payment-integration">Xem thêm →</a>
-        </motion.div>
-        <motion.div
-          className="card"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
-          viewport={{ once: true }}
-        >
-          <img
-  src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80"
-  alt="Testing trong Spring Boot"
-/>
-
-          <h2>Testing trong Spring Boot</h2>
-          <p>
-            Tìm hiểu cách viết unit test, integration test, và end-to-end test cho ứng dụng Spring Boot sử dụng JUnit, Mockito, và RestAssured.
-          </p>
-          <a href="/spring-boot-testing">Xem thêm →</a>
-        </motion.div>
-        <motion.div
-          className="card"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.0 }}
-          viewport={{ once: true }}
-        >
-          <img
-            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
-            alt="Spring Boot với OAuth2"
-          />
-          <h2>Spring Boot với OAuth2 & Social Login</h2>
-          <p>
-            Hướng dẫn tích hợp OAuth2 và social login (Google, GitHub) vào ứng dụng Spring Boot với Spring Security, đảm bảo xác thực an toàn.
-          </p>
-          <a href="/spring-boot-oauth2">Xem thêm →</a>
-        </motion.div>
+        {filteredPosts.length > 0 ? (
+          filteredPosts.map((post, index) => (
+            <motion.div
+              key={post.id}
+              className="card"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <img src={post.image} alt={post.title} />
+              <h2>{post.title}</h2>
+              <p>{post.description}</p>
+              <a href={post.link}>Xem thêm →</a>
+            </motion.div>
+          ))
+        ) : (
+          <p className="no-results">Không tìm thấy bài viết phù hợp.</p>
+        )}
       </div>
-      {/* CTA SECTION */}
       <section className="cta">
         <h2>Cùng tạo nên điều tuyệt vời 🚀</h2>
         <p>
