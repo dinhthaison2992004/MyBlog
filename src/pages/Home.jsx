@@ -502,10 +502,10 @@ export default function Home() {
         <section className="hero">
           <div className="hero-content">
             <h1>
-              Xin chào 👋 <br /> Mình là <span>Đinh Thái Sơn</span>
+              Xin chào 👋 <br /> Chào mừng bạn đến Mindstation 
             </h1>
             <p>
-              Blog này sẽ là nơi mình chia sẻ hành trình học tập, khám phá và theo đuổi đam mê lập trình. Ở đây, mình ghi lại những kiến thức, dự án, và cả những thử thách mình gặp phải trên con đường phát triển bản thân, với hy vọng mang đến nguồn cảm hứng và giá trị cho những ai cùng chung niềm đam mê công nghệ
+              MindStation – “Trạm dừng của tri thức và sáng tạo” – là nơi mỗi người có thể tạm dừng giữa nhịp sống hối hả để nạp năng lượng cho tâm trí. Blog chia sẻ kiến thức, kinh nghiệm và cảm hứng trong lĩnh vực công nghệ, lập trình và phát triển bản thân. Tại đây, bạn sẽ khám phá những bài viết chuyên sâu, cập nhật xu hướng công nghệ mới cùng những câu chuyện truyền cảm hứng, giúp bạn không ngừng học hỏi và sáng tạo trên hành trình chinh phục thế giới số.
             </p>
 
             <div className="hero-buttons">
