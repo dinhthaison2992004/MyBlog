@@ -117,17 +117,33 @@ export default function Blog() {
           }
 
           .title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            background: linear-gradient(to right, #a5b4fc, #ffffff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-          }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Playfair Display', 'Inter', serif;
+  font-size: 2.8rem;
+  font-weight: 400; /* không in đậm */
+  color: #ffffff; /* màu trắng thuần */
+  text-align: center;
+  margin-bottom: 1.5rem;
+  text-transform: capitalize; /* viết hoa chữ cái đầu mỗi từ */
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.1);
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
           .quote {
             text-align: center;
@@ -334,7 +350,10 @@ export default function Blog() {
           }
         `}
       </style>
-      <h1 className="title">📝 Blog Lập Trình</h1>
+      <h1 className="title">
+  <span className="emoji">📝</span> <span className="text">Blog Lập Trình</span>
+</h1>
+
       <p className="quote">
         "Lập trình là nghệ thuật biến ý tưởng thành hiện thực thông qua những dòng code." – Anonymous
       </p>

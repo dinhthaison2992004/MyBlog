@@ -129,19 +129,23 @@ export default function Project() {
 
       {/* Tiêu đề */}
       <motion.h1
-        initial={{ opacity: 0, y: -40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        style={{
-          textAlign: "center",
-          fontSize: "48px",
-          fontWeight: "800",
-          color: "#1e3a8a",
-          marginBottom: "40px",
-        }}
-      >
-        Các <span style={{ color: "#2563eb" }}>Dự Án</span> Của Tôi
-      </motion.h1>
+  initial={{ opacity: 0, y: -40 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1 }}
+  style={{
+    textAlign: "center",
+    fontFamily: "'Playfair Display', serif",
+    fontSize: "3.2rem",
+    fontWeight: 900,
+    marginBottom: "40px",
+    lineHeight: 1.15,
+    display: "block",
+    color: "#ffffff", // chữ trắng
+  }}
+>
+  Các Dự Án Của Tôi
+</motion.h1>
+
 
       {/* Grid dự án */}
       <motion.div
@@ -243,16 +247,21 @@ export default function Project() {
               </div>
 
               <div style={{ textAlign: "center" }}>
-                <svg
-                  width="28"
-                  height="28"
-                  viewBox="0 0 24 24"
-                  fill="#181717"
-                  style={{ cursor: "pointer", display: "inline-block" }}
-                  onClick={(e) => showTooltip(project.link, e)}
-                >
-                  <path d="M12 2C6.48 2 2 6.48 2 12c0 4.41 2.87 8.14 6.84 9.49.5.09.68-.22.68-.48v-1.71c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.12-1.47-1.12-1.47-.91-.62.07-.61.07-.61 1.01.07 1.54 1.04 1.54 1.04.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.26.1-2.63 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 6.8c.85 0 1.71.11 2.51.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.38.1 2.63.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.56 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0022 12c0-5.52-4.48-10-10-10z"/>
-                </svg>
+               <a
+  href={project.link}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="github-link"
+>
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+  >
+    <path d="M12 2C6.48 2 2 6.48 2 12c0 4.41 2.87 8.14 6.84 9.49.5.09.68-.22.68-.48v-1.71c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.12-1.47-1.12-1.47-.91-.62.07-.61.07-.61 1.01.07 1.54 1.04 1.54 1.04.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.26.1-2.63 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 6.8c.85 0 1.71.11 2.51.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.38.1 2.63.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.56 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0022 12c0-5.52-4.48-10-10-10z"/>
+  </svg>
+</a>
+
               </div>
             </div>
           </motion.div>
